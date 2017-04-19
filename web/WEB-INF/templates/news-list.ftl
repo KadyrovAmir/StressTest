@@ -20,11 +20,8 @@
                 <#list all_news as n>
                 <tr>
                     <td>${n?counter}</td>
-                    <td><a href="/topic?n=${n.getId()}">${n.getTitle()}</a></td>
-                    <td><#if newsService?has_content>
-                            ${newsService.getGameNewsIsAbout(n.getId()).getName()}
-                        </#if>
-                    </td>
+                    <td><a href="/topic?n=${n.id}">${n.title}</a></td>
+                    <td>${n.game.rating}</td>
                 </tr>
                 </#list>
             </#if>
@@ -32,10 +29,4 @@
     </table>
 </div>
 </#macro>
-<#macro comments>
-</#macro>
-<#if current_user??>
-    <#include "base_log.ftl">
-<#else>
-    <#include "base.ftl">
-</#if>
+<#include "base.ftl">

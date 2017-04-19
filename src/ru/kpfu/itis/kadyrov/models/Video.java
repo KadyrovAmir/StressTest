@@ -1,55 +1,55 @@
 package ru.kpfu.itis.kadyrov.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Created by Amir Kadyrov
  * Date: 19.04.2017
  */
+@Entity
 @Table(name = "video")
 public class Video {
     private int id;
-    @Column
-    private int game_id;
-    @Column
+    private Game game;
     private String videoLink;
-    @Column
     private String title;
-    @Column
     private String date;
 
-    public Video(int id, int game_id, String videoLink, String title, String date) {
-        this.id = id;
-        this.game_id = game_id;
-        this.videoLink = videoLink;
-        this.title = title;
-        this.date = date;
-    }
-
-    public Video(int game_id, String videoLink, String title) {
-        this.game_id = game_id;
-        this.videoLink = videoLink;
-        this.title = title;
-    }
-
-    public String getVideoLink() {
-        return videoLink;
-    }
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getId() {
         return id;
     }
 
-    public int getGame_id() {
-        return game_id;
+    public void setId(int id) {
+        this.id = id;
+    }
+    @ManyToOne
+    @JoinColumn(name = "game_id", referencedColumnName = "id")
+    public Game getGame() {
+        return game;
     }
 
+    public void setGame(Game game) {
+        this.game = game;
+    }
+    @Column
+    public String getVideoLink() {
+        return videoLink;
+    }
+
+    public void setVideoLink(String videoLink) {
+        this.videoLink = videoLink;
+    }
+    @Column
     public String getTitle() {
         return title;
     }
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+    @Column
     public String getDate() {
         return date;
     }

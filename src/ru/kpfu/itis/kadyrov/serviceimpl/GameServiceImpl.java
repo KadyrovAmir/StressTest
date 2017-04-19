@@ -1,5 +1,6 @@
 package ru.kpfu.itis.kadyrov.serviceimpl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.kpfu.itis.kadyrov.models.Game;
 import ru.kpfu.itis.kadyrov.repository.GameRepository;
@@ -15,13 +16,13 @@ import java.util.List;
 public class GameServiceImpl implements GameService {
 
     private GameRepository gameRepository;
-
+    @Autowired
     public GameServiceImpl(GameRepository gameRepository) {
         this.gameRepository = gameRepository;
     }
 
     @Override
-    public List<Game> getAll() {
-        return gameRepository.findAll();
+    public Game findById(int id) {
+        return gameRepository.findById(id);
     }
 }

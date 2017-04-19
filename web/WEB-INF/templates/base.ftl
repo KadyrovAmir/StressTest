@@ -41,9 +41,6 @@
         </nav>
     </div>
     <@page/>
-    <footer>
-        <@comments/>
-    </footer>
 </div>
 </body>
 </html>

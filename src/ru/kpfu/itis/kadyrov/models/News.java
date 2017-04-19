@@ -6,34 +6,17 @@ import javax.persistence.*;
  * Created by Amir Kadyrov
  * Date: 19.04.2017
  */
+@Entity
 @Table(name = "news")
 public class News {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column
-    private int game_id;
-    @Column
+    private Game game;
     private String title;
-    @Column
     private String text;
-    @Column
     private String date;
 
-    public News(int id, int game_id, String title, String text, String date) {
-        this.id = id;
-        this.game_id = game_id;
-        this.title = title;
-        this.text = text;
-        this.date = date;
-    }
-
-    public News(int game_id, String title, String text) {
-        this.game_id = game_id;
-        this.title = title;
-        this.text = text;
-    }
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getId() {
         return id;
     }
@@ -41,15 +24,16 @@ public class News {
     public void setId(int id) {
         this.id = id;
     }
-
-    public int getGame_id() {
-        return game_id;
+    @ManyToOne
+    @JoinColumn(name = "game_id", referencedColumnName = "id")
+    public Game getGame() {
+        return game;
     }
 
-    public void setGame_id(int game_id) {
-        this.game_id = game_id;
+    public void setGame(Game game) {
+        this.game = game;
     }
-
+    @Column
     public String getTitle() {
         return title;
     }
@@ -57,7 +41,7 @@ public class News {
     public void setTitle(String title) {
         this.title = title;
     }
-
+    @Column
     public String getText() {
         return text;
     }
@@ -65,7 +49,7 @@ public class News {
     public void setText(String text) {
         this.text = text;
     }
-
+    @Column
     public String getDate() {
         return date;
     }

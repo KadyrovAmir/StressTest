@@ -1,43 +1,28 @@
 package ru.kpfu.itis.kadyrov.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by Amir Kadyrov
  * Date: 19.04.2017
  */
+@Entity
 @Table(name = "game")
 public class Game {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column
     private String name;
-    @Column
     private String date;
-    @Column
     private String description;
-    @Column
     private String imageURL;
-    @Column
     private float rating;
+    @OneToMany(mappedBy = "news")
+    private List<News> news;
+    @OneToMany(mappedBy = "video")
+    private List<Video> videos;
 
-    public Game(int id, String name, String date, String description, String imageURL, float rating) {
-        this.id = id;
-        this.name = name;
-        this.date = date;
-        this.description = description;
-        this.imageURL = imageURL;
-        this.rating = rating;
-    }
-
-    public Game(String name, String date, String description, String imageURL) {
-        this.name = name;
-        this.date = date;
-        this.description = description;
-        this.imageURL = imageURL;
-    }
-
+    @Id
+    @GeneratedValue
     public int getId() {
         return id;
     }
@@ -46,6 +31,7 @@ public class Game {
         this.id = id;
     }
 
+    @Column
     public String getName() {
         return name;
     }
@@ -54,6 +40,7 @@ public class Game {
         this.name = name;
     }
 
+    @Column
     public String getDate() {
         return date;
     }
@@ -62,6 +49,7 @@ public class Game {
         this.date = date;
     }
 
+    @Column
     public String getDescription() {
         return description;
     }
@@ -70,6 +58,7 @@ public class Game {
         this.description = description;
     }
 
+    @Column
     public String getImageURL() {
         return imageURL;
     }
@@ -78,11 +67,12 @@ public class Game {
         this.imageURL = imageURL;
     }
 
+    @Column
     public float getRating() {
         return rating;
     }
 
-    public void setRating(int rating) {
+    public void setRating(float rating) {
         this.rating = rating;
     }
 }

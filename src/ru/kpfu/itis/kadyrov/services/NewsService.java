@@ -1,6 +1,6 @@
 package ru.kpfu.itis.kadyrov.services;
 
-import ru.kpfu.itis.kadyrov.models.Game;
+import ru.kpfu.itis.kadyrov.models.News;
 
 import java.util.List;
 
@@ -8,6 +8,6 @@ import java.util.List;
  * Created by Amir Kadyrov
  * Date: 19.04.2017
  */
-public interface GameService {
-    Game findById(int id);
+public interface NewsService {
+    List<News> findAll();
 }
